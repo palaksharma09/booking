@@ -1,28 +1,46 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Login</title>
-    <link rel="stylesheet" href="login.css">
+    <title>Login | ServiceHub</title>
+    <link rel="stylesheet" href="CSS/commonfile.css">
 </head>
 
-<body>
-    <div class="login-box">
-        <h2>Sign In</h2>
+<body class="auth-body">
+    <div class="auth-container">
+        <div class="auth-card">
+            <div class="auth-header">
+                <a href="Dashboard.php" class="auth-logo">ServiceHub</a>
+                <h2>Welcome Back</h2>
+                <p>Sign in to continue to your account</p>
+            </div>
 
-        <form>
-            <label>Username</label>
-            <input type="text" placeholder="Enter your name" required>
+            <form class="auth-form">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" placeholder="Enter your username" required>
+                </div>
 
-            <label>Password</label>
-            <input type="password" placeholder="Enter your password" required>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" placeholder="Enter your password" required>
+                </div>
 
-            <button type="submit">Login</button>
+                <div class="form-options">
+                    <label class="checkbox-container">
+                        <input type="checkbox" checked>
+                        <span class="checkmark"></span>
+                        Remember me
+                    </label>
+                    <a href="forgot-password.php" class="forgot-link">Forgot Password?</a>
+                </div>
 
-            <p>Don’t have an account?
-                <a href="Registration.html">Register</a>
-            </p>
-        </form>
+                <button type="submit" class="auth-btn">Sign In</button>
+
+                <div class="auth-footer">
+                    <p>Don't have an account? <a href="Registration.php">Create Account</a></p>
+                </div>
+            </form>
+        </div>
     </div>
 </body>
 </html>
-
