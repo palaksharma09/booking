@@ -4750,3 +4750,40 @@ body {
     }
 }
 
+
+
+
+/* Welcome text in header */
+.welcome-text {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--dark-text);
+    background: var(--dark-bg-light);
+    padding: 6px 15px;
+    border-radius: 30px;
+    border: 1px solid var(--secondary-light);
+    margin-right: 5px;
+}
+
+/* Profile icon link styling */
+.profile-icon-link {
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.profile-icon-link:hover {
+    text-decoration: none;
+}
+
+/* Adjust premium button for register variant */
+.premium-btn[style*="background: transparent"] {
+    transition: all 0.3s ease;
+}
+
+.premium-btn[style*="background: transparent"]:hover {
+    background: var(--secondary-color) !important;
+    color: var(--white);
+    border-color: var(--secondary-color) !important;
+}

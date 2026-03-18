@@ -67,7 +67,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // If no errors, insert into database
     if (empty($errors)) {
         // Hash the password for security
-        $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+        // $hashed_password = password_hash($password, PASSWORD_DEFAULT);
         
         // Default role is 'user' (not admin)
         $role = 'user';
@@ -75,7 +75,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Prepare insert statement
         $insert_sql = "INSERT INTO users (user_name, user_email_id, password, role) VALUES (?, ?, ?, ?)";
         $insert_stmt = $conn->prepare($insert_sql);
-        $insert_stmt->bind_param("ssss", $username, $email, $hashed_password, $role);
+        $insert_stmt->bind_param("ssss", $username, $email, $password, $role);
         
         if ($insert_stmt->execute()) {
             // Registration successful
