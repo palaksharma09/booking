@@ -4787,3 +4787,57 @@ body {
     color: var(--white);
     border-color: var(--secondary-color) !important;
 }
+
+/* Missing field styling */
+.missing-field {
+    background: rgba(245, 158, 11, 0.05);
+    border-radius: 12px;
+    padding: 10px 15px;
+    margin: 5px 0;
+    border-left: 4px solid #F59E0B;
+}
+
+.missing-data {
+    color: #9CA3AF;
+    font-style: italic;
+    margin-right: 12px;
+}
+
+.add-btn {
+    display: inline-block;
+    background: var(--secondary-color);
+    color: white;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: var(--transition-base);
+    margin-left: 10px;
+}
+
+.add-btn:hover {
+    background: var(--secondary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(16, 185, 129, 0.3);
+    text-decoration: none;
+    color: white;
+}
+
+.missing-fields-notice {
+    background: linear-gradient(135deg, #FEF3C7, #FDE68A);
+    color: #92400E;
+    padding: 15px 25px;
+    border-radius: 16px;
+    text-align: center;
+    margin: 30px auto 0;
+    max-width: 600px;
+    border: 1px solid #FBBF24;
+    box-shadow: var(--shadow-md);
+    font-size: 15px;
+}
+
+.missing-fields-notice strong {
+    font-weight: 700;
+    color: #B45309;
+}

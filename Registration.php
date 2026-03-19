@@ -103,6 +103,78 @@ $conn->close();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register | ServiceHub</title>
     <link rel="stylesheet" href="CSS/commonfile.css">
+    <style>
+        /* Password field with eye icon */
+        .password-wrapper {
+            position: relative;
+            width: 100%;
+        }
+        
+        .password-wrapper input {
+            width: 100%;
+            padding: 15px 18px;
+            padding-right: 50px; /* Space for eye icon */
+            font-size: 15px;
+            border: 2px solid var(--border-light);
+            border-radius: 16px;
+            background: var(--white);
+            color: var(--text-dark);
+            transition: all 0.3s ease;
+            outline: none;
+        }
+        
+        .password-wrapper input:focus {
+            border-color: var(--secondary-color);
+            box-shadow: 0 0 0 4px var(--secondary-light);
+        }
+        
+        .toggle-password {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            font-size: 20px;
+            color: var(--text-light);
+            transition: var(--transition-fast);
+            background: transparent;
+            border: none;
+            padding: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .toggle-password:hover {
+            color: var(--secondary-color);
+        }
+        
+        /* Adjust for half-width inputs in form row */
+        .form-row .password-wrapper {
+            width: 100%;
+        }
+        
+        /* Password strength indicator (optional enhancement) */
+        .password-strength {
+            margin-top: 8px;
+            display: flex;
+            gap: 5px;
+        }
+        
+        .strength-bar {
+            height: 4px;
+            flex: 1;
+            background: var(--border-light);
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+        
+        .strength-text {
+            font-size: 12px;
+            color: var(--text-light);
+            margin-top: 5px;
+        }
+    </style>
 </head>
 <body class="auth-body">
 
@@ -139,12 +211,24 @@ $conn->close();
                 <div class="form-row">
                     <div class="form-group half">
                         <label for="password">Password</label>
-                        <input type="password" id="password" name="password" placeholder="Create password" required>
+                        <div class="password-wrapper">
+                            <input type="password" id="password" name="password" placeholder="Create password" required>
+                            <span class="toggle-password" onclick="togglePasswordVisibility('password')">👁️</span>
+                        </div>
+                        <div class="password-strength" id="password-strength" style="display: none;">
+                            <div class="strength-bar"></div>
+                            <div class="strength-bar"></div>
+                            <div class="strength-bar"></div>
+                        </div>
+                        <span class="strength-text" id="strength-text"></span>
                     </div>
 
                     <div class="form-group half">
                         <label for="confirm-password">Confirm Password</label>
-                        <input type="password" id="confirm-password" name="confirm_password" placeholder="Confirm password" required>
+                        <div class="password-wrapper">
+                            <input type="password" id="confirm-password" name="confirm_password" placeholder="Confirm password" required>
+                            <span class="toggle-password" onclick="togglePasswordVisibility('confirm-password')">👁️</span>
+                        </div>
                     </div>
                 </div>
 
@@ -165,5 +249,74 @@ $conn->close();
         </div>
     </div>
 
+    <script>
+    function togglePasswordVisibility(fieldId) {
+        const passwordInput = document.getElementById(fieldId);
+        const toggleIcon = event.currentTarget;
+        
+        if (passwordInput.type === 'password') {
+            passwordInput.type = 'text';
+            toggleIcon.textContent = '🔒';
+        } else {
+            passwordInput.type = 'password';
+            toggleIcon.textContent = '👁️';
+        }
+    }
+    
+    // Optional: Password strength indicator (enhancement)
+    document.getElementById('password')?.addEventListener('input', function() {
+        const password = this.value;
+        const strengthBars = document.querySelectorAll('.strength-bar');
+        const strengthText = document.getElementById('strength-text');
+        const strengthContainer = document.getElementById('password-strength');
+        
+        if (password.length === 0) {
+            strengthContainer.style.display = 'none';
+            strengthText.textContent = '';
+            return;
+        }
+        
+        strengthContainer.style.display = 'flex';
+        
+        // Simple password strength check
+        let strength = 0;
+        if (password.length >= 6) strength++;
+        if (password.length >= 8) strength++;
+        if (/[A-Z]/.test(password)) strength++;
+        if (/[0-9]/.test(password)) strength++;
+        if (/[^A-Za-z0-9]/.test(password)) strength++;
+        
+        // Normalize to 3 bars
+        let barCount = Math.min(3, Math.ceil(strength / 2));
+        
+        // Reset bars
+        strengthBars.forEach(bar => {
+            bar.style.background = 'var(--border-light)';
+        });
+        
+        // Fill bars based on strength
+        for (let i = 0; i < barCount; i++) {
+            if (barCount === 1) {
+                strengthBars[i].style.background = '#EF4444'; // Weak - Red
+            } else if (barCount === 2) {
+                strengthBars[i].style.background = '#F59E0B'; // Medium - Orange
+            } else {
+                strengthBars[i].style.background = 'var(--secondary-color)'; // Strong - Green
+            }
+        }
+        
+        // Set strength text
+        if (barCount === 1) {
+            strengthText.textContent = 'Weak password';
+            strengthText.style.color = '#EF4444';
+        } else if (barCount === 2) {
+            strengthText.textContent = 'Medium password';
+            strengthText.style.color = '#F59E0B';
+        } else if (barCount >= 3) {
+            strengthText.textContent = 'Strong password';
+            strengthText.style.color = 'var(--secondary-color)';
+        }
+    });
+    </script>
 </body>
 </html>

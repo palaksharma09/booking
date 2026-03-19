@@ -92,6 +92,70 @@ $conn->close();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login | ServiceHub</title>
     <link rel="stylesheet" href="CSS/commonfile.css">
+    <style>
+        /* Password field with eye icon */
+        .password-wrapper {
+            position: relative;
+            width: 100%;
+        }
+        
+        .password-wrapper input {
+            width: 100%;
+            padding: 15px 18px;
+            padding-right: 50px; /* Space for eye icon */
+            font-size: 15px;
+            border: 2px solid var(--border-light);
+            border-radius: 16px;
+            background: var(--white);
+            color: var(--text-dark);
+            transition: all 0.3s ease;
+            outline: none;
+        }
+        
+        .password-wrapper input:focus {
+            border-color: var(--secondary-color);
+            box-shadow: 0 0 0 4px var(--secondary-light);
+        }
+        
+        .toggle-password {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            font-size: 20px;
+            color: var(--text-light);
+            transition: var(--transition-fast);
+            background: transparent;
+            border: none;
+            padding: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .toggle-password:hover {
+            color: var(--secondary-color);
+        }
+        
+        /* Account deletion success message */
+        .goodbye-message {
+            background: #FEE2E2;
+            color: #DC2626;
+            padding: 15px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            font-size: 14px;
+            text-align: center;
+            border: 1px solid #FCA5A5;
+            animation: slideUp 0.3s ease-out;
+        }
+        
+        .goodbye-message span {
+            font-size: 20px;
+            margin-right: 8px;
+        }
+    </style>
 </head>
 
 <body class="auth-body">
@@ -107,6 +171,13 @@ $conn->close();
             <?php if ($registration_success): ?>
                 <div class="success-message">
                     Registration successful! Please login with your credentials.
+                </div>
+            <?php endif; ?>
+
+            <!-- Account deletion success message -->
+            <?php if (isset($_GET['account_deleted']) && $_GET['account_deleted'] == 'success'): ?>
+                <div class="goodbye-message">
+                    <span>👋</span> Your account has been successfully deleted. We're sorry to see you go!
                 </div>
             <?php endif; ?>
 
@@ -128,8 +199,11 @@ $conn->close();
 
                 <div class="form-group">
                     <label for="password">Password</label>
-                    <input type="password" id="password" name="password" 
-                           placeholder="Enter your password" required>
+                    <div class="password-wrapper">
+                        <input type="password" id="password" name="password" 
+                               placeholder="Enter your password" required>
+                        <span class="toggle-password" onclick="togglePasswordVisibility('password')">👁️</span>
+                    </div>
                 </div>
 
                 <div class="form-options">
@@ -150,5 +224,20 @@ $conn->close();
            
         </div>
     </div>
+
+    <script>
+    function togglePasswordVisibility(fieldId) {
+        const passwordInput = document.getElementById(fieldId);
+        const toggleIcon = event.currentTarget;
+        
+        if (passwordInput.type === 'password') {
+            passwordInput.type = 'text';
+            toggleIcon.textContent = '🔒';
+        } else {
+            passwordInput.type = 'password';
+            toggleIcon.textContent = '👁️';
+        }
+    }
+    </script>
 </body>
 </html>
