@@ -1,70 +1,144 @@
 <?php
+// services.php
 $category = $_GET['category'] ?? 'home';
 include 'header.php';
+require_once 'db_conn.php'; // Using your existing database connection
 
-// Define service details based on category
-$serviceDetails = [
-    'home' => [
-        'title' => 'Home Services',
-        'subtitle' => 'Professional home maintenance and cleaning services',
-        'description' => 'From deep cleaning to electrical repairs, our home service professionals are here to make your life easier. Book trusted experts for all your home needs.',
-        'image' => 'https://images.unsplash.com/photo-1581578731548-c64695cc6952?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',
-        'services' => [
-            ['icon' => '🧹', 'name' => 'Cleaning', 'desc' => 'Deep cleaning, regular maintenance', 'count' => '24 professionals', 'popular' => true],
-            ['icon' => '💡', 'name' => 'Electrician', 'desc' => 'Repairs, installation, wiring', 'count' => '18 professionals', 'popular' => true],
-            ['icon' => '👨‍🍳', 'name' => 'Cooking', 'desc' => 'Home chefs, meal preparation', 'count' => '15 professionals', 'popular' => false],
-            ['icon' => '🔧', 'name' => 'Plumbing', 'desc' => 'Pipe repair, fixture installation', 'count' => '20 professionals', 'popular' => true],
-            ['icon' => '🎨', 'name' => 'Painting', 'desc' => 'Interior & exterior painting', 'count' => '12 professionals', 'popular' => false],
-            ['icon' => '🛋️', 'name' => 'Furniture Assembly', 'desc' => 'Assembly & repair', 'count' => '10 professionals', 'popular' => false],
-            ['icon' => '❄️', 'name' => 'AC Service', 'desc' => 'Repair & maintenance', 'count' => '14 professionals', 'popular' => true],
-            ['icon' => '🔒', 'name' => 'Locksmith', 'desc' => 'Lock repair, installation', 'count' => '8 professionals', 'popular' => false],
-            ['icon' => '📦', 'name' => 'Packing & Moving', 'desc' => 'Home shifting services', 'count' => '12 professionals', 'popular' => false]
-        ]
-    ],
-    'salon' => [
-        'title' => 'Salon Services',
-        'subtitle' => 'Beauty and wellness services at your doorstep',
-        'description' => 'Pamper yourself with premium beauty services delivered to your home. Our expert stylists and beauticians use top-quality products.',
-        'image' => 'https://images.pexels.com/photos/3993449/pexels-photo-3993449.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-        'services' => [
-            ['icon' => '✂️', 'name' => 'Haircut', 'desc' => 'Men & women haircut, styling', 'count' => '32 professionals', 'popular' => true],
-            ['icon' => '🧴', 'name' => 'Facial', 'desc' => 'Premium skincare treatments', 'count' => '28 professionals', 'popular' => true],
-            ['icon' => '💄', 'name' => 'Make-up', 'desc' => 'Party, bridal makeup', 'count' => '25 professionals', 'popular' => true],
-            ['icon' => '💅', 'name' => 'Manicure/Pedicure', 'desc' => 'Nail care services', 'count' => '22 professionals', 'popular' => true],
-            ['icon' => '🌸', 'name' => 'Spa', 'desc' => 'Massage, relaxation therapy', 'count' => '16 professionals', 'popular' => false],
-            ['icon' => '👰', 'name' => 'Bridal Package', 'desc' => 'Complete bridal makeover', 'count' => '12 professionals', 'popular' => false],
-            ['icon' => '💇', 'name' => ' Hair Color', 'desc' => 'Professional coloring', 'count' => '18 professionals', 'popular' => true],
-            ['icon' => '🧖', 'name' => 'Steam & Sauna', 'desc' => 'Relaxation therapies', 'count' => '10 professionals', 'popular' => false]
-        ]
-    ],
-    'garage' => [
-        'title' => 'Garage Services',
-        'subtitle' => 'Expert car care and maintenance',
-        'description' => 'Keep your vehicle in top condition with our professional garage services. From regular maintenance to emergency repairs, we\'ve got you covered.',
-        'image' => 'https://images.unsplash.com/photo-1530046339160-ce3e530c7d2f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',
-        'services' => [
-            ['icon' => '🚿', 'name' => 'Car Wash', 'desc' => 'Professional cleaning, waxing', 'count' => '30 professionals', 'popular' => true],
-            ['icon' => '🔧', 'name' => 'Repair', 'desc' => 'Engine, transmission repair', 'count' => '25 professionals', 'popular' => true],
-            ['icon' => '🛢️', 'name' => 'Oil Change', 'desc' => 'Engine oil, filter change', 'count' => '28 professionals', 'popular' => true],
-            ['icon' => '⚡', 'name' => 'Battery Service', 'desc' => 'Battery check, replacement', 'count' => '20 professionals', 'popular' => false],
-            ['icon' => '🛞', 'name' => 'Tire Service', 'desc' => 'Tire rotation, alignment', 'count' => '22 professionals', 'popular' => true],
-            ['icon' => '🔍', 'name' => 'Diagnostics', 'desc' => 'Computer diagnostics', 'count' => '15 professionals', 'popular' => false],
-            ['icon' => '❄️', 'name' => 'AC Service', 'desc' => 'Car AC repair', 'count' => '12 professionals', 'popular' => true],
-            ['icon' => '🚘', 'name' => 'Detailing', 'desc' => 'Complete car detailing', 'count' => '10 professionals', 'popular' => false]
-        ]
-    ]
-];
+// Fetch category and services from database
+$currentCategory = null;
+$services = [];
 
-$currentCategory = $serviceDetails[$category];
+// Check if database connection exists
+if (isset($conn) && $conn->connect_error === null) {
+    try {
+        // Fetch category details using MySQLi prepared statement
+        $stmt = $conn->prepare("SELECT * FROM categories WHERE slug = ?");
+        $stmt->bind_param("s", $category);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $currentCategory = $result->fetch_assoc();
+        
+        // If category not found, fallback to default (home)
+        if (!$currentCategory) {
+            $stmt = $conn->prepare("SELECT * FROM categories WHERE slug = 'home'");
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $currentCategory = $result->fetch_assoc();
+            $category = 'home'; // Update category for URL consistency
+        }
+        
+        // Fetch services for this category
+        if ($currentCategory) {
+            $stmt = $conn->prepare("SELECT * FROM services WHERE category_id = ? ORDER BY is_popular DESC, name ASC");
+            $stmt->bind_param("i", $currentCategory['id']);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $services = $result->fetch_all(MYSQLI_ASSOC);
+        }
+        
+        $stmt->close();
+        
+    } catch (Exception $e) {
+        error_log("Database error: " . $e->getMessage());
+        // Fallback to hardcoded data if database query fails
+        $currentCategory = getFallbackCategory($category);
+        $services = getFallbackServices($category);
+    }
+} else {
+    // Fallback to hardcoded data if database connection fails
+    $currentCategory = getFallbackCategory($category);
+    $services = getFallbackServices($category);
+}
 
-// Split services into popular and regular for better organization
-$popularServices = array_filter($currentCategory['services'], function($service) {
-    return $service['popular'] === true;
+// Helper function to get fallback category data
+function getFallbackCategory($category) {
+    $fallbackCategories = [
+        'home' => [
+            'title' => 'Home Services',
+            'subtitle' => 'Professional home maintenance and cleaning services',
+            'description' => 'From deep cleaning to electrical repairs, our home service professionals are here to make your life easier. Book trusted experts for all your home needs.',
+            'image' => 'https://images.unsplash.com/photo-1581578731548-c64695cc6952?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80'
+        ],
+        'salon' => [
+            'title' => 'Salon Services',
+            'subtitle' => 'Beauty and wellness services at your doorstep',
+            'description' => 'Pamper yourself with premium beauty services delivered to your home. Our expert stylists and beauticians use top-quality products.',
+            'image' => 'https://images.pexels.com/photos/3993449/pexels-photo-3993449.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
+        ],
+        'garage' => [
+            'title' => 'Garage Services',
+            'subtitle' => 'Expert car care and maintenance',
+            'description' => 'Keep your vehicle in top condition with our professional garage services. From regular maintenance to emergency repairs, we\'ve got you covered.',
+            'image' => 'https://images.unsplash.com/photo-1530046339160-ce3e530c7d2f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80'
+        ]
+    ];
+    
+    return $fallbackCategories[$category] ?? $fallbackCategories['home'];
+}
+
+// Helper function to get fallback services data
+function getFallbackServices($category) {
+    $fallbackServices = [
+        'home' => [
+            ['icon' => 'fa-solid fa-broom', 'icon_type' => 'fontawesome', 'name' => 'Cleaning', 'description' => 'Deep cleaning, regular maintenance', 'professional_count' => 24, 'is_popular' => true],
+            ['icon' => 'fa-solid fa-bolt', 'icon_type' => 'fontawesome', 'name' => 'Electrician', 'description' => 'Repairs, installation, wiring', 'professional_count' => 18, 'is_popular' => true],
+            ['icon' => 'fa-solid fa-utensils', 'icon_type' => 'fontawesome', 'name' => 'Cooking', 'description' => 'Home chefs, meal preparation', 'professional_count' => 15, 'is_popular' => false],
+            ['icon' => 'fa-solid fa-wrench', 'icon_type' => 'fontawesome', 'name' => 'Plumbing', 'description' => 'Pipe repair, fixture installation', 'professional_count' => 20, 'is_popular' => true],
+            ['icon' => 'fa-solid fa-paint-roller', 'icon_type' => 'fontawesome', 'name' => 'Painting', 'description' => 'Interior & exterior painting', 'professional_count' => 12, 'is_popular' => false],
+            ['icon' => 'fa-solid fa-couch', 'icon_type' => 'fontawesome', 'name' => 'Furniture Assembly', 'description' => 'Assembly & repair', 'professional_count' => 10, 'is_popular' => false],
+            ['icon' => 'fa-solid fa-snowflake', 'icon_type' => 'fontawesome', 'name' => 'AC Service', 'description' => 'Repair & maintenance', 'professional_count' => 14, 'is_popular' => true],
+            ['icon' => 'fa-solid fa-key', 'icon_type' => 'fontawesome', 'name' => 'Locksmith', 'description' => 'Lock repair, installation', 'professional_count' => 8, 'is_popular' => false],
+            ['icon' => 'fa-solid fa-boxes', 'icon_type' => 'fontawesome', 'name' => 'Packing & Moving', 'description' => 'Home shifting services', 'professional_count' => 12, 'is_popular' => false]
+        ],
+        'salon' => [
+            ['icon' => 'fa-solid fa-scissors', 'icon_type' => 'fontawesome', 'name' => 'Haircut', 'description' => 'Men & women haircut, styling', 'professional_count' => 32, 'is_popular' => true],
+            ['icon' => 'fa-solid fa-spa', 'icon_type' => 'fontawesome', 'name' => 'Facial', 'description' => 'Premium skincare treatments', 'professional_count' => 28, 'is_popular' => true],
+            ['icon' => 'fa-solid fa-brush', 'icon_type' => 'fontawesome', 'name' => 'Make-up', 'description' => 'Party, bridal makeup', 'professional_count' => 25, 'is_popular' => true],
+            ['icon' => 'fa-solid fa-hand-sparkles', 'icon_type' => 'fontawesome', 'name' => 'Manicure/Pedicure', 'description' => 'Nail care services', 'professional_count' => 22, 'is_popular' => true],
+            ['icon' => 'fa-solid fa-hot-tub', 'icon_type' => 'fontawesome', 'name' => 'Spa', 'description' => 'Massage, relaxation therapy', 'professional_count' => 16, 'is_popular' => false],
+            ['icon' => 'fa-solid fa-rings-wedding', 'icon_type' => 'fontawesome', 'name' => 'Bridal Package', 'description' => 'Complete bridal makeover', 'professional_count' => 12, 'is_popular' => false],
+            ['icon' => 'fa-solid fa-palette', 'icon_type' => 'fontawesome', 'name' => 'Hair Color', 'description' => 'Professional coloring', 'professional_count' => 18, 'is_popular' => true],
+            ['icon' => 'fa-solid fa-hot-tub-person', 'icon_type' => 'fontawesome', 'name' => 'Steam & Sauna', 'description' => 'Relaxation therapies', 'professional_count' => 10, 'is_popular' => false]
+        ],
+        'garage' => [
+            ['icon' => 'fa-solid fa-car-wash', 'icon_type' => 'fontawesome', 'name' => 'Car Wash', 'description' => 'Professional cleaning, waxing', 'professional_count' => 30, 'is_popular' => true],
+            ['icon' => 'fa-solid fa-screwdriver-wrench', 'icon_type' => 'fontawesome', 'name' => 'Repair', 'description' => 'Engine, transmission repair', 'professional_count' => 25, 'is_popular' => true],
+            ['icon' => 'fa-solid fa-oil-can', 'icon_type' => 'fontawesome', 'name' => 'Oil Change', 'description' => 'Engine oil, filter change', 'professional_count' => 28, 'is_popular' => true],
+            ['icon' => 'fa-solid fa-car-battery', 'icon_type' => 'fontawesome', 'name' => 'Battery Service', 'description' => 'Battery check, replacement', 'professional_count' => 20, 'is_popular' => false],
+            ['icon' => 'fa-solid fa-tire', 'icon_type' => 'fontawesome', 'name' => 'Tire Service', 'description' => 'Tire rotation, alignment', 'professional_count' => 22, 'is_popular' => true],
+            ['icon' => 'fa-solid fa-microchip', 'icon_type' => 'fontawesome', 'name' => 'Diagnostics', 'description' => 'Computer diagnostics', 'professional_count' => 15, 'is_popular' => false],
+            ['icon' => 'fa-solid fa-wind', 'icon_type' => 'fontawesome', 'name' => 'AC Service', 'description' => 'Car AC repair', 'professional_count' => 12, 'is_popular' => true],
+            ['icon' => 'fa-solid fa-spray-can-sparkles', 'icon_type' => 'fontawesome', 'name' => 'Detailing', 'description' => 'Complete car detailing', 'professional_count' => 10, 'is_popular' => false]
+        ]
+    ];
+    
+    return $fallbackServices[$category] ?? $fallbackServices['home'];
+}
+
+// Convert fallback services array to match database structure if needed
+if (!isset($services[0]['icon_type'])) {
+    $services = array_map(function($service) {
+        return array_merge($service, ['icon_type' => 'fontawesome']);
+    }, $services);
+}
+
+// Separate services into popular and regular
+$popularServices = array_filter($services, function($service) {
+    return $service['is_popular'] == 1;
 });
 
-$regularServices = array_filter($currentCategory['services'], function($service) {
-    return $service['popular'] !== true;
+$regularServices = array_filter($services, function($service) {
+    return $service['is_popular'] == 0;
 });
+
+// Function to render icon based on type
+function renderIcon($icon, $iconType = 'fontawesome') {
+    if ($iconType === 'fontawesome') {
+        return '<i class="' . htmlspecialchars($icon) . '"></i>';
+    } else {
+        return '<img src="' . htmlspecialchars($icon) . '" alt="service icon" class="service-svg-icon">';
+    }
+}
 ?>
 
 <!-- Enhanced Category Banner -->
@@ -72,13 +146,13 @@ $regularServices = array_filter($currentCategory['services'], function($service)
     <div class="category-banner-container">
         <div class="category-banner-content">
             <div class="category-breadcrumb">
-                <a href="Dashboard.php">Home</a> > <span><?php echo $currentCategory['title']; ?></span>
+                <a href="Dashboard.php">Home</a> > <span><?php echo htmlspecialchars($currentCategory['title']); ?></span>
             </div>
-            <h1><?php echo $currentCategory['title']; ?></h1>
-            <p class="category-description"><?php echo $currentCategory['description']; ?></p>
+            <h1><?php echo htmlspecialchars($currentCategory['title']); ?></h1>
+            <p class="category-description"><?php echo htmlspecialchars($currentCategory['description']); ?></p>
             <div class="category-banner-stats">
                 <div class="banner-stat">
-                    <span class="banner-stat-number"><?php echo count($currentCategory['services']); ?>+</span>
+                    <span class="banner-stat-number"><?php echo count($services); ?>+</span>
                     <span class="banner-stat-label">Services</span>
                 </div>
                 <div class="banner-stat">
@@ -92,30 +166,33 @@ $regularServices = array_filter($currentCategory['services'], function($service)
             </div>
         </div>
         <div class="category-banner-image">
-            <img src="<?php echo $currentCategory['image']; ?>" alt="<?php echo $currentCategory['title']; ?>">
+            <img src="<?php echo htmlspecialchars($currentCategory['image']); ?>" alt="<?php echo htmlspecialchars($currentCategory['title']); ?>">
         </div>
     </div>
 </section>
-
-<!-- Quick Stats (removed - now integrated into banner) -->
 
 <!-- Popular Services Section (if there are popular services) -->
 <?php if (!empty($popularServices)): ?>
 <section class="popular-services-section">
     <div class="section-header">
-        <h2>Popular <?php echo $currentCategory['title']; ?></h2>
+        <h2>Popular <?php echo htmlspecialchars($currentCategory['title']); ?></h2>
         <p>Most booked services by our customers</p>
     </div>
 
     <div class="popular-services-grid">
         <?php foreach ($popularServices as $service): ?>
             <div class="popular-service-card" 
-                 onclick="window.location.href='service_list.php?category=<?php echo $category; ?>&service=<?php echo urlencode($service['name']); ?>'">
-                <div class="popular-service-icon"><?php echo $service['icon']; ?></div>
+                 onclick="window.location.href='provider_list.php?category=<?php echo urlencode($category); ?>&service=<?php echo urlencode($service['name']); ?>'">
+                <div class="popular-service-icon">
+                    <?php 
+                    $iconType = isset($service['icon_type']) ? $service['icon_type'] : 'fontawesome';
+                    echo renderIcon($service['icon'], $iconType); 
+                    ?>
+                </div>
                 <div class="popular-service-info">
-                    <h3><?php echo $service['name']; ?></h3>
-                    <p><?php echo $service['desc']; ?></p>
-                    <span class="popular-service-count"><?php echo $service['count']; ?></span>
+                    <h3><?php echo htmlspecialchars($service['name']); ?></h3>
+                    <p><?php echo htmlspecialchars($service['description']); ?></p>
+                    <span class="popular-service-count">👥 <?php echo $service['professional_count']; ?> professionals</span>
                 </div>
                 <div class="popular-service-arrow">→</div>
             </div>
@@ -127,25 +204,30 @@ $regularServices = array_filter($currentCategory['services'], function($service)
 <!-- All Services Section - Enhanced Grid -->
 <section class="all-services-section">
     <div class="section-header">
-        <h2>All <?php echo $currentCategory['title']; ?></h2>
+        <h2>All <?php echo htmlspecialchars($currentCategory['title']); ?></h2>
         <p>Browse our complete range of services</p>
     </div>
 
     <div class="enhanced-services-grid">
-        <?php foreach ($currentCategory['services'] as $service): ?>
+        <?php foreach ($services as $service): ?>
             <div class="enhanced-service-card" 
-                 onclick="window.location.href='service_list.php?category=<?php echo $category; ?>&service=<?php echo urlencode($service['name']); ?>'">
+                 onclick="window.location.href='provider_list.php?category=<?php echo urlencode($category); ?>&service=<?php echo urlencode($service['name']); ?>'">
                 <div class="enhanced-service-icon-wrapper">
-                    <div class="enhanced-service-icon"><?php echo $service['icon']; ?></div>
-                    <?php if ($service['popular']): ?>
+                    <div class="enhanced-service-icon">
+                        <?php 
+                        $iconType = isset($service['icon_type']) ? $service['icon_type'] : 'fontawesome';
+                        echo renderIcon($service['icon'], $iconType); 
+                        ?>
+                    </div>
+                    <?php if ($service['is_popular']): ?>
                         <span class="enhanced-service-badge">Popular</span>
                     <?php endif; ?>
                 </div>
                 <div class="enhanced-service-content">
-                    <h3><?php echo $service['name']; ?></h3>
-                    <p class="enhanced-service-desc"><?php echo $service['desc']; ?></p>
+                    <h3><?php echo htmlspecialchars($service['name']); ?></h3>
+                    <p class="enhanced-service-desc"><?php echo htmlspecialchars($service['description']); ?></p>
                     <div class="enhanced-service-footer">
-                        <span class="enhanced-service-count">👥 <?php echo $service['count']; ?></span>
+                        <span class="enhanced-service-count">👥 <?php echo $service['professional_count']; ?> professionals</span>
                         <span class="enhanced-service-link">View Professionals →</span>
                     </div>
                 </div>
@@ -154,7 +236,7 @@ $regularServices = array_filter($currentCategory['services'], function($service)
     </div>
 </section>
 
-<!-- New: How It Works - Service Page Version (different from dashboard) -->
+<!-- How It Works - Service Page Version -->
 <section class="service-process-section">
     <div class="section-header">
         <h2>How It Works</h2>
@@ -189,11 +271,11 @@ $regularServices = array_filter($currentCategory['services'], function($service)
     </div>
 </section>
 
-<!-- New: Customer Reviews Section -->
+<!-- Customer Reviews Section -->
 <section class="service-reviews-section">
     <div class="section-header">
         <h2>What Customers Say</h2>
-        <p>Real reviews from people who booked <?php echo strtolower($currentCategory['title']); ?></p>
+        <p>Real reviews from people who booked <?php echo strtolower(htmlspecialchars($currentCategory['title'])); ?></p>
     </div>
 
     <div class="service-reviews-grid">
@@ -205,8 +287,8 @@ $regularServices = array_filter($currentCategory['services'], function($service)
                     <div class="review-rating">⭐⭐⭐⭐⭐</div>
                 </div>
             </div>
-            <p class="review-text">"Excellent service! The plumber was professional and fixed the issue quickly. Very reasonable prices."</p>
-            <span class="review-service">Plumbing Service</span>
+            <p class="review-text">"Excellent service! The professional was thorough and fixed everything quickly."</p>
+            <span class="review-service">Quality Service</span>
         </div>
         <div class="service-review-card">
             <div class="reviewer-info">
@@ -216,8 +298,8 @@ $regularServices = array_filter($currentCategory['services'], function($service)
                     <div class="review-rating">⭐⭐⭐⭐⭐</div>
                 </div>
             </div>
-            <p class="review-text">"The cleaning team was thorough and punctual. My house has never looked better. Will book again!"</p>
-            <span class="review-service">Cleaning Service</span>
+            <p class="review-text">"Very professional and punctual. Will definitely book again!"</p>
+            <span class="review-service">Excellent Experience</span>
         </div>
         <div class="service-review-card">
             <div class="reviewer-info">
@@ -227,17 +309,17 @@ $regularServices = array_filter($currentCategory['services'], function($service)
                     <div class="review-rating">⭐⭐⭐⭐⭐</div>
                 </div>
             </div>
-            <p class="review-text">"Great experience with the electrician. He was knowledgeable and fixed all the wiring issues."</p>
-            <span class="review-service">Electrical Service</span>
+            <p class="review-text">"Great value for money. Highly recommended for all home services."</p>
+            <span class="review-service">Great Value</span>
         </div>
     </div>
 </section>
 
-<!-- New: FAQ Section -->
+<!-- FAQ Section -->
 <section class="service-faq-section">
     <div class="section-header">
         <h2>Frequently Asked Questions</h2>
-        <p>Everything you need to know about our <?php echo strtolower($currentCategory['title']); ?></p>
+        <p>Everything you need to know about our <?php echo strtolower(htmlspecialchars($currentCategory['title'])); ?></p>
     </div>
 
     <div class="faq-grid">
