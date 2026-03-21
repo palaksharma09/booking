@@ -146,7 +146,7 @@ function renderIcon($icon, $iconType = 'fontawesome') {
     <div class="category-banner-container">
         <div class="category-banner-content">
             <div class="category-breadcrumb">
-                <a href="Dashboard.php">Home</a> > <span><?php echo htmlspecialchars($currentCategory['title']); ?></span>
+                <a href="dashboard.php">Home</a> > <span><?php echo htmlspecialchars($currentCategory['title']); ?></span>
             </div>
             <h1><?php echo htmlspecialchars($currentCategory['title']); ?></h1>
             <p class="category-description"><?php echo htmlspecialchars($currentCategory['description']); ?></p>
@@ -192,7 +192,10 @@ function renderIcon($icon, $iconType = 'fontawesome') {
                 <div class="popular-service-info">
                     <h3><?php echo htmlspecialchars($service['name']); ?></h3>
                     <p><?php echo htmlspecialchars($service['description']); ?></p>
-                    <span class="popular-service-count">👥 <?php echo $service['professional_count']; ?> professionals</span>
+                    <span class="popular-service-count icon-inline">
+                        <svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M16 20a4 4 0 0 0-8 0"></path><circle cx="12" cy="10" r="3"></circle><path d="M21 20a4 4 0 0 0-5-3.9"></path><path d="M16.5 4.8a3 3 0 0 1 0 5.4"></path><path d="M3 20a4 4 0 0 1 5-3.9"></path><path d="M7.5 4.8a3 3 0 0 0 0 5.4"></path></svg>
+                        <span><?php echo $service['professional_count']; ?> professionals</span>
+                    </span>
                 </div>
                 <div class="popular-service-arrow">→</div>
             </div>
@@ -227,8 +230,14 @@ function renderIcon($icon, $iconType = 'fontawesome') {
                     <h3><?php echo htmlspecialchars($service['name']); ?></h3>
                     <p class="enhanced-service-desc"><?php echo htmlspecialchars($service['description']); ?></p>
                     <div class="enhanced-service-footer">
-                        <span class="enhanced-service-count">👥 <?php echo $service['professional_count']; ?> professionals</span>
-                        <span class="enhanced-service-link">View Professionals →</span>
+                        <span class="enhanced-service-count icon-inline">
+                            <svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M16 20a4 4 0 0 0-8 0"></path><circle cx="12" cy="10" r="3"></circle><path d="M21 20a4 4 0 0 0-5-3.9"></path><path d="M16.5 4.8a3 3 0 0 1 0 5.4"></path><path d="M3 20a4 4 0 0 1 5-3.9"></path><path d="M7.5 4.8a3 3 0 0 0 0 5.4"></path></svg>
+                            <span><?php echo $service['professional_count']; ?> professionals</span>
+                        </span>
+                        <span class="enhanced-service-link icon-inline">
+                            <span>View Professionals</span>
+                            <svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"></path><path d="m13 6 6 6-6 6"></path></svg>
+                        </span>
                     </div>
                 </div>
             </div>
@@ -246,25 +255,33 @@ function renderIcon($icon, $iconType = 'fontawesome') {
     <div class="service-process-steps">
         <div class="service-process-step">
             <div class="service-process-number">1</div>
-            <div class="service-process-icon">🔍</div>
+            <div class="service-process-icon" aria-hidden="true">
+                <svg class="icon-svg" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6"></circle><path d="m20 20-4.2-4.2"></path></svg>
+            </div>
             <h3>Browse Services</h3>
             <p>Choose from our wide range of professional services</p>
         </div>
         <div class="service-process-step">
             <div class="service-process-number">2</div>
-            <div class="service-process-icon">👥</div>
+            <div class="service-process-icon" aria-hidden="true">
+                <svg class="icon-svg" viewBox="0 0 24 24"><path d="M16 20a4 4 0 0 0-8 0"></path><circle cx="12" cy="10" r="3"></circle><path d="M21 20a4 4 0 0 0-5-3.9"></path><path d="M16.5 4.8a3 3 0 0 1 0 5.4"></path><path d="M3 20a4 4 0 0 1 5-3.9"></path><path d="M7.5 4.8a3 3 0 0 0 0 5.4"></path></svg>
+            </div>
             <h3>Select Professional</h3>
             <p>Compare profiles, ratings, and prices</p>
         </div>
         <div class="service-process-step">
             <div class="service-process-number">3</div>
-            <div class="service-process-icon">📅</div>
+            <div class="service-process-icon" aria-hidden="true">
+                <svg class="icon-svg" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"></rect><path d="M16 3v4"></path><path d="M8 3v4"></path><path d="M3 10h18"></path></svg>
+            </div>
             <h3>Schedule</h3>
             <p>Pick a date and time that works for you</p>
         </div>
         <div class="service-process-step">
             <div class="service-process-number">4</div>
-            <div class="service-process-icon">✨</div>
+            <div class="service-process-icon" aria-hidden="true">
+                <svg class="icon-svg" viewBox="0 0 24 24"><path d="m12 3 1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8L12 3Z"></path></svg>
+            </div>
             <h3>Get Service</h3>
             <p>Professional arrives and completes the job</p>
         </div>
@@ -281,10 +298,10 @@ function renderIcon($icon, $iconType = 'fontawesome') {
     <div class="service-reviews-grid">
         <div class="service-review-card">
             <div class="reviewer-info">
-                <div class="reviewer-avatar">👤</div>
+                <div class="reviewer-avatar" aria-hidden="true"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M18 20a6 6 0 0 0-12 0"></path><circle cx="12" cy="8" r="4"></circle></svg></div>
                 <div class="reviewer-details">
                     <h4>Priya Sharma</h4>
-                    <div class="review-rating">⭐⭐⭐⭐⭐</div>
+                    <div class="review-rating icon-inline" aria-label="5 out of 5 stars"><svg class="icon-svg icon-svg-fill" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2.8 2.8 5.7 6.3.9-4.6 4.5 1.1 6.3L12 17.3 6.4 20.2l1.1-6.3-4.6-4.5 6.3-.9L12 2.8Z"></path></svg><svg class="icon-svg icon-svg-fill" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2.8 2.8 5.7 6.3.9-4.6 4.5 1.1 6.3L12 17.3 6.4 20.2l1.1-6.3-4.6-4.5 6.3-.9L12 2.8Z"></path></svg><svg class="icon-svg icon-svg-fill" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2.8 2.8 5.7 6.3.9-4.6 4.5 1.1 6.3L12 17.3 6.4 20.2l1.1-6.3-4.6-4.5 6.3-.9L12 2.8Z"></path></svg><svg class="icon-svg icon-svg-fill" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2.8 2.8 5.7 6.3.9-4.6 4.5 1.1 6.3L12 17.3 6.4 20.2l1.1-6.3-4.6-4.5 6.3-.9L12 2.8Z"></path></svg><svg class="icon-svg icon-svg-fill" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2.8 2.8 5.7 6.3.9-4.6 4.5 1.1 6.3L12 17.3 6.4 20.2l1.1-6.3-4.6-4.5 6.3-.9L12 2.8Z"></path></svg></div>
                 </div>
             </div>
             <p class="review-text">"Excellent service! The professional was thorough and fixed everything quickly."</p>
@@ -292,10 +309,10 @@ function renderIcon($icon, $iconType = 'fontawesome') {
         </div>
         <div class="service-review-card">
             <div class="reviewer-info">
-                <div class="reviewer-avatar">👤</div>
+                <div class="reviewer-avatar" aria-hidden="true"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M18 20a6 6 0 0 0-12 0"></path><circle cx="12" cy="8" r="4"></circle></svg></div>
                 <div class="reviewer-details">
                     <h4>Rajesh Kumar</h4>
-                    <div class="review-rating">⭐⭐⭐⭐⭐</div>
+                    <div class="review-rating icon-inline" aria-label="5 out of 5 stars"><svg class="icon-svg icon-svg-fill" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2.8 2.8 5.7 6.3.9-4.6 4.5 1.1 6.3L12 17.3 6.4 20.2l1.1-6.3-4.6-4.5 6.3-.9L12 2.8Z"></path></svg><svg class="icon-svg icon-svg-fill" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2.8 2.8 5.7 6.3.9-4.6 4.5 1.1 6.3L12 17.3 6.4 20.2l1.1-6.3-4.6-4.5 6.3-.9L12 2.8Z"></path></svg><svg class="icon-svg icon-svg-fill" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2.8 2.8 5.7 6.3.9-4.6 4.5 1.1 6.3L12 17.3 6.4 20.2l1.1-6.3-4.6-4.5 6.3-.9L12 2.8Z"></path></svg><svg class="icon-svg icon-svg-fill" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2.8 2.8 5.7 6.3.9-4.6 4.5 1.1 6.3L12 17.3 6.4 20.2l1.1-6.3-4.6-4.5 6.3-.9L12 2.8Z"></path></svg><svg class="icon-svg icon-svg-fill" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2.8 2.8 5.7 6.3.9-4.6 4.5 1.1 6.3L12 17.3 6.4 20.2l1.1-6.3-4.6-4.5 6.3-.9L12 2.8Z"></path></svg></div>
                 </div>
             </div>
             <p class="review-text">"Very professional and punctual. Will definitely book again!"</p>
@@ -303,10 +320,10 @@ function renderIcon($icon, $iconType = 'fontawesome') {
         </div>
         <div class="service-review-card">
             <div class="reviewer-info">
-                <div class="reviewer-avatar">👤</div>
+                <div class="reviewer-avatar" aria-hidden="true"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M18 20a6 6 0 0 0-12 0"></path><circle cx="12" cy="8" r="4"></circle></svg></div>
                 <div class="reviewer-details">
                     <h4>Anita Desai</h4>
-                    <div class="review-rating">⭐⭐⭐⭐⭐</div>
+                    <div class="review-rating icon-inline" aria-label="5 out of 5 stars"><svg class="icon-svg icon-svg-fill" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2.8 2.8 5.7 6.3.9-4.6 4.5 1.1 6.3L12 17.3 6.4 20.2l1.1-6.3-4.6-4.5 6.3-.9L12 2.8Z"></path></svg><svg class="icon-svg icon-svg-fill" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2.8 2.8 5.7 6.3.9-4.6 4.5 1.1 6.3L12 17.3 6.4 20.2l1.1-6.3-4.6-4.5 6.3-.9L12 2.8Z"></path></svg><svg class="icon-svg icon-svg-fill" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2.8 2.8 5.7 6.3.9-4.6 4.5 1.1 6.3L12 17.3 6.4 20.2l1.1-6.3-4.6-4.5 6.3-.9L12 2.8Z"></path></svg><svg class="icon-svg icon-svg-fill" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2.8 2.8 5.7 6.3.9-4.6 4.5 1.1 6.3L12 17.3 6.4 20.2l1.1-6.3-4.6-4.5 6.3-.9L12 2.8Z"></path></svg><svg class="icon-svg icon-svg-fill" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2.8 2.8 5.7 6.3.9-4.6 4.5 1.1 6.3L12 17.3 6.4 20.2l1.1-6.3-4.6-4.5 6.3-.9L12 2.8Z"></path></svg></div>
                 </div>
             </div>
             <p class="review-text">"Great value for money. Highly recommended for all home services."</p>

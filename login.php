@@ -1,75 +1,58 @@
 <?php
 session_start();
 
-// Check if user is already logged in
 if (isset($_SESSION['user_id'])) {
-    header("Location: Dashboard.php");
+    header("Location: dashboard.php");
     exit();
 }
 
-// Include database connection
 include 'db_conn.php';
 
-// Initialize variables
 $username = $email = "";
 $login_error = "";
 $registration_success = false;
 
-// Check if this is a redirect from successful registration
 if (isset($_GET['registration']) && $_GET['registration'] == 'success') {
     $registration_success = true;
 }
 
-// Process login form when submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    
-    // Get form data
-    $login_input = trim($_POST['login_input']); // Can be username or email
+    $login_input = trim($_POST['login_input']);
     $password = $_POST['password'];
-    $remember = isset($_POST['remember']) ? true : false;
-    
-    // Validation
+    $remember = isset($_POST['remember']);
+
     if (empty($login_input)) {
         $login_error = "Please enter username or email";
     } elseif (empty($password)) {
         $login_error = "Please enter your password";
     } else {
-        // Check if input is email or username
         if (filter_var($login_input, FILTER_VALIDATE_EMAIL)) {
-            // Login with email
             $sql = "SELECT user_id, user_name, user_email_id, password, role FROM users WHERE user_email_id = ?";
         } else {
-            // Login with username
             $sql = "SELECT user_id, user_name, user_email_id, password, role FROM users WHERE user_name = ?";
         }
-        
-        // Prepare and execute query
+
         $stmt = $conn->prepare($sql);
         $stmt->bind_param("s", $login_input);
         $stmt->execute();
         $result = $stmt->get_result();
-        
+
         if ($result->num_rows === 1) {
             $user = $result->fetch_assoc();
-            
-            // Verify password (plain text for now - you should use password_hash in production)
+
             if ($password === $user['password']) {
-                // Password is correct, start session
                 $_SESSION['user_id'] = $user['user_id'];
                 $_SESSION['username'] = $user['user_name'];
                 $_SESSION['user_email'] = $user['user_email_id'];
                 $_SESSION['user_role'] = $user['role'];
                 $_SESSION['logged_in'] = true;
-                
-                // Set remember me cookie if requested (30 days)
+
                 if ($remember) {
                     $token = bin2hex(random_bytes(32));
-                    // Store token in database for persistent login (optional)
-                    setcookie('remember_token', $token, time() + (86400 * 30), "/"); // 30 days
+                    setcookie('remember_token', $token, time() + (86400 * 30), "/");
                 }
-                
-                // Redirect to dashboard
-                header("Location: Dashboard.php");
+
+                header("Location: dashboard.php");
                 exit();
             } else {
                 $login_error = "Invalid password";
@@ -77,7 +60,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         } else {
             $login_error = "User not found";
         }
-        
+
         $stmt->close();
     }
 }
@@ -92,17 +75,17 @@ $conn->close();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login | ServiceHub</title>
     <link rel="stylesheet" href="CSS/commonfile.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* Password field with eye icon */
         .password-wrapper {
             position: relative;
             width: 100%;
         }
-        
+
         .password-wrapper input {
             width: 100%;
             padding: 15px 18px;
-            padding-right: 50px; /* Space for eye icon */
+            padding-right: 50px;
             font-size: 15px;
             border: 2px solid var(--border-light);
             border-radius: 16px;
@@ -111,19 +94,19 @@ $conn->close();
             transition: all 0.3s ease;
             outline: none;
         }
-        
+
         .password-wrapper input:focus {
             border-color: var(--secondary-color);
             box-shadow: 0 0 0 4px var(--secondary-light);
         }
-        
+
         .toggle-password {
             position: absolute;
             right: 15px;
             top: 50%;
             transform: translateY(-50%);
             cursor: pointer;
-            font-size: 20px;
+            font-size: 18px;
             color: var(--text-light);
             transition: var(--transition-fast);
             background: transparent;
@@ -133,12 +116,11 @@ $conn->close();
             align-items: center;
             justify-content: center;
         }
-        
+
         .toggle-password:hover {
             color: var(--secondary-color);
         }
-        
-        /* Account deletion success message */
+
         .goodbye-message {
             background: #FEE2E2;
             color: #DC2626;
@@ -150,38 +132,39 @@ $conn->close();
             border: 1px solid #FCA5A5;
             animation: slideUp 0.3s ease-out;
         }
-        
+
         .goodbye-message span {
-            font-size: 20px;
             margin-right: 8px;
         }
     </style>
 </head>
-
 <body class="auth-body">
     <div class="auth-container">
         <div class="auth-card">
             <div class="auth-header">
-                <a href="Dashboard.php" class="auth-logo">ServiceHub</a>
+                <a href="dashboard.php" class="auth-logo">ServiceHub</a>
                 <h2>Welcome Back</h2>
                 <p>Sign in to continue to your account</p>
             </div>
 
-            <!-- Success message from registration -->
             <?php if ($registration_success): ?>
                 <div class="success-message">
                     Registration successful! Please login with your credentials.
                 </div>
             <?php endif; ?>
 
-            <!-- Account deletion success message -->
-            <?php if (isset($_GET['account_deleted']) && $_GET['account_deleted'] == 'success'): ?>
-                <div class="goodbye-message">
-                    <span>👋</span> Your account has been successfully deleted. We're sorry to see you go!
+            <?php if (isset($_GET['reset']) && $_GET['reset'] === 'success'): ?>
+                <div class="success-message">
+                    Password updated successfully. Please sign in with your new password.
                 </div>
             <?php endif; ?>
 
-            <!-- Display Error Message -->
+            <?php if (isset($_GET['account_deleted']) && $_GET['account_deleted'] == 'success'): ?>
+                <div class="goodbye-message">
+                    <span><i class="fa-regular fa-hand"></i></span>Your account has been successfully deleted. We're sorry to see you go!
+                </div>
+            <?php endif; ?>
+
             <?php if (!empty($login_error)): ?>
                 <div class="error-message">
                     <?php echo $login_error; ?>
@@ -191,18 +174,19 @@ $conn->close();
             <form class="auth-form" method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
                 <div class="form-group">
                     <label for="login_input">Username or Email</label>
-                    <input type="text" id="login_input" name="login_input" 
-                           placeholder="Enter your username or email" 
-                           value="<?php echo isset($_POST['login_input']) ? htmlspecialchars($_POST['login_input']) : ''; ?>" 
+                    <input type="text" id="login_input" name="login_input"
+                           placeholder="Enter your username or email"
+                           value="<?php echo isset($_POST['login_input']) ? htmlspecialchars($_POST['login_input']) : ''; ?>"
                            required>
                 </div>
 
                 <div class="form-group">
                     <label for="password">Password</label>
                     <div class="password-wrapper">
-                        <input type="password" id="password" name="password" 
-                               placeholder="Enter your password" required>
-                        <span class="toggle-password" onclick="togglePasswordVisibility('password')">👁️</span>
+                        <input type="password" id="password" name="password" placeholder="Enter your password" required>
+                        <button type="button" class="toggle-password" onclick="togglePasswordVisibility('password', this)" aria-label="Show password">
+                            <i class="fa-regular fa-eye"></i>
+                        </button>
                     </div>
                 </div>
 
@@ -221,21 +205,22 @@ $conn->close();
                     <p>Don't have an account? <a href="Registration.php">Create Account</a></p>
                 </div>
             </form>
-           
         </div>
     </div>
 
     <script>
-    function togglePasswordVisibility(fieldId) {
+    function togglePasswordVisibility(fieldId, trigger) {
         const passwordInput = document.getElementById(fieldId);
-        const toggleIcon = event.currentTarget;
-        
+        const toggleIcon = trigger.querySelector('i');
+
         if (passwordInput.type === 'password') {
             passwordInput.type = 'text';
-            toggleIcon.textContent = '🔒';
+            toggleIcon.className = 'fa-regular fa-eye-slash';
+            trigger.setAttribute('aria-label', 'Hide password');
         } else {
             passwordInput.type = 'password';
-            toggleIcon.textContent = '👁️';
+            toggleIcon.className = 'fa-regular fa-eye';
+            trigger.setAttribute('aria-label', 'Show password');
         }
     }
     </script>

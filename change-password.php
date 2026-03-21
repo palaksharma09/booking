@@ -98,7 +98,9 @@ include 'header.php';
     <div class="profile-hero-container">
         <!-- Circular Avatar with lock icon for password page -->
         <div class="profile-avatar">
-            <span>🔒</span>
+            <span aria-hidden="true">
+                <svg class="icon-svg" viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2"></rect><path d="M8 11V8a4 4 0 1 1 8 0v3"></path></svg>
+            </span>
         </div>
         <h1 class="profile-title">Change Password</h1>
         <p class="profile-subtitle">Update your account password</p>
@@ -139,9 +141,10 @@ include 'header.php';
         
         <!-- Security Note for TESTING -->
         <div style="background: #FEF3C7; border-left: 4px solid #F59E0B; padding: 12px 15px; border-radius: 12px; margin-bottom: 25px;">
-            <p style="font-size: 13px; color: #92400E; margin: 0;">
-                ⚠️ <strong>Test Mode Notice:</strong> Password is stored in plain text for testing purposes.
-                In production, this should use password hashing.
+            <p class="icon-inline" style="font-size: 13px; color: #92400E; margin: 0;">
+                <svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 2.8 19a1.2 1.2 0 0 0 1 1.8h16.4a1.2 1.2 0 0 0 1-1.8L12 3Z"></path><path d="M12 9v4"></path><path d="M12 17h.01"></path></svg>
+                <span><strong>Test Mode Notice:</strong> Password is stored in plain text for testing purposes.
+                In production, this should use password hashing.</span>
             </p>
         </div>
         
@@ -161,8 +164,9 @@ include 'header.php';
                            required>
                     <button type="button" 
                             onclick="togglePassword('current_password')" 
+                            aria-label="Show current password"
                             style="position: absolute; right: 15px; top: 50%; transform: translateY(-50%); background: none; border: none; cursor: pointer; color: var(--text-light); font-size: 16px;">
-                        👁️
+                        <svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6-10-6-10-6Z"></path><circle cx="12" cy="12" r="3"></circle></svg>
                     </button>
                 </div>
             </div>
@@ -182,8 +186,9 @@ include 'header.php';
                            required>
                     <button type="button" 
                             onclick="togglePassword('new_password')" 
+                            aria-label="Show new password"
                             style="position: absolute; right: 15px; top: 50%; transform: translateY(-50%); background: none; border: none; cursor: pointer; color: var(--text-light); font-size: 16px;">
-                        👁️
+                        <svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6-10-6-10-6Z"></path><circle cx="12" cy="12" r="3"></circle></svg>
                     </button>
                 </div>
                 <small style="font-size: 12px; color: var(--text-light); margin-top: 5px; display: block;">
@@ -206,8 +211,9 @@ include 'header.php';
                            required>
                     <button type="button" 
                             onclick="togglePassword('confirm_password')" 
+                            aria-label="Show confirm password"
                             style="position: absolute; right: 15px; top: 50%; transform: translateY(-50%); background: none; border: none; cursor: pointer; color: var(--text-light); font-size: 16px;">
-                        👁️
+                        <svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6-10-6-10-6Z"></path><circle cx="12" cy="12" r="3"></circle></svg>
                     </button>
                 </div>
             </div>
@@ -223,17 +229,18 @@ include 'header.php';
         <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid var(--border-light);">
             <h3 style="font-size: 14px; color: var(--text-medium); margin-bottom: 10px;">Password Tips:</h3>
             <ul style="list-style: none; padding: 0; margin: 0;">
-                <li style="font-size: 13px; color: var(--text-light); margin-bottom: 5px;">✓ Use at least 6 characters</li>
-                <li style="font-size: 13px; color: var(--text-light); margin-bottom: 5px;">✓ Mix uppercase and lowercase letters</li>
-                <li style="font-size: 13px; color: var(--text-light); margin-bottom: 5px;">✓ Include numbers for extra security</li>
-                <li style="font-size: 13px; color: var(--text-light);">✓ Avoid using common words or personal information</li>
+                <li class="icon-list-item" style="font-size: 13px; color: var(--text-light); margin-bottom: 5px;"><svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 4 4L19 6"></path></svg><span>Use at least 6 characters</span></li>
+                <li class="icon-list-item" style="font-size: 13px; color: var(--text-light); margin-bottom: 5px;"><svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 4 4L19 6"></path></svg><span>Mix uppercase and lowercase letters</span></li>
+                <li class="icon-list-item" style="font-size: 13px; color: var(--text-light); margin-bottom: 5px;"><svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 4 4L19 6"></path></svg><span>Include numbers for extra security</span></li>
+                <li class="icon-list-item" style="font-size: 13px; color: var(--text-light);"><svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 4 4L19 6"></path></svg><span>Avoid using common words or personal information</span></li>
             </ul>
         </div>
     </div>
     
     <!-- Security Note -->
-    <p style="text-align: center; color: var(--text-light); font-size: 13px; margin-top: 20px;">
-        🔐 Your password is encrypted and stored securely. Never share your password with anyone.
+    <p class="icon-inline" style="justify-content: center; color: var(--text-light); font-size: 13px; margin-top: 20px;">
+        <svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 12a3 3 0 1 0 6 0 3 3 0 0 0-6 0Z"></path><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z"></path></svg>
+        <span>Your password is encrypted and stored securely. Never share your password with anyone.</span>
     </p>
 </div>
 
@@ -244,12 +251,19 @@ function togglePassword(fieldId) {
     const type = field.getAttribute('type') === 'password' ? 'text' : 'password';
     field.setAttribute('type', type);
     
-    // Optional: Change eye icon appearance
     const btn = field.nextElementSibling;
     if (type === 'text') {
         btn.style.opacity = '0.7';
+        btn.setAttribute('aria-label', 'Hide password');
     } else {
         btn.style.opacity = '1';
+        if (fieldId === 'current_password') {
+            btn.setAttribute('aria-label', 'Show current password');
+        } else if (fieldId === 'new_password') {
+            btn.setAttribute('aria-label', 'Show new password');
+        } else {
+            btn.setAttribute('aria-label', 'Show confirm password');
+        }
     }
 }
 

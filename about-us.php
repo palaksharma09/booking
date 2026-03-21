@@ -18,7 +18,9 @@
                  alt="Our Team at ServiceHub"
                  onerror="this.src='https://via.placeholder.com/600x400?text=Our+Team'">
             <div class="story-image-badge">
-                <span class="badge-icon">🎯</span>
+                <span class="badge-icon" aria-hidden="true">
+                    <svg class="icon-svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"></circle><circle cx="12" cy="12" r="3"></circle><path d="m16.5 7.5 4-4"></path></svg>
+                </span>
                 <span>Since 2020</span>
             </div>
         </div>
@@ -52,12 +54,16 @@
 <section class="mission-vision-section">
     <div class="mission-vision-container">
         <div class="mission-card">
-            <div class="mission-icon">🚀</div>
+            <div class="mission-icon" aria-hidden="true">
+                <svg class="icon-svg" viewBox="0 0 24 24"><path d="M5 19c2.5-6.5 7.5-11.5 14-14 .3 2.9-.3 5.8-2 8-2.5 3.2-6.3 5.4-10.4 6Z"></path><path d="M9 15 5 19"></path><path d="M11 7a7.5 7.5 0 0 1 6 6"></path></svg>
+            </div>
             <h3>Our Mission</h3>
             <p>To empower every Indian household with access to trusted, skilled professionals who deliver exceptional service at their doorstep, making quality service accessible to all.</p>
         </div>
         <div class="vision-card">
-            <div class="vision-icon">🌟</div>
+            <div class="vision-icon" aria-hidden="true">
+                <svg class="icon-svg icon-svg-fill" viewBox="0 0 24 24"><path d="m12 2.8 2.8 5.7 6.3.9-4.6 4.5 1.1 6.3L12 17.3 6.4 20.2l1.1-6.3-4.6-4.5 6.3-.9L12 2.8Z"></path></svg>
+            </div>
             <h3>Our Vision</h3>
             <p>To become India's most loved and trusted service platform, creating millions of successful professional partnerships and transforming the way services are delivered.</p>
         </div>
@@ -73,73 +79,151 @@
 
     <div class="values-grid">
         <div class="value-card">
-            <div class="value-icon">🤝</div>
+            <div class="value-icon" aria-hidden="true">
+                <svg class="icon-svg" viewBox="0 0 24 24"><path d="M8.5 11.5 6 14a2.8 2.8 0 0 1-4 0 2.8 2.8 0 0 1 0-4l4.7-4.7a3 3 0 0 1 4.2 0L13 7.4"></path><path d="m10.5 12.5 2.3 2.2a2.8 2.8 0 0 0 4 0l5.1-5.1a2.8 2.8 0 0 0 0-4 2.8 2.8 0 0 0-4 0L15 8.5"></path><path d="m9 15 6-6"></path></svg>
+            </div>
             <h3>Trust & Transparency</h3>
             <p>We believe in building trust through complete transparency in pricing, professional background checks, and clear communication.</p>
         </div>
         <div class="value-card">
-            <div class="value-icon">⭐</div>
+            <div class="value-icon" aria-hidden="true">
+                <svg class="icon-svg icon-svg-fill" viewBox="0 0 24 24"><path d="m12 2.8 2.8 5.7 6.3.9-4.6 4.5 1.1 6.3L12 17.3 6.4 20.2l1.1-6.3-4.6-4.5 6.3-.9L12 2.8Z"></path></svg>
+            </div>
             <h3>Quality First</h3>
             <p>We never compromise on quality. Every professional is vetted, and every service is monitored to ensure excellence.</p>
         </div>
         <div class="value-card">
-            <div class="value-icon">❤️</div>
+            <div class="value-icon" aria-hidden="true">
+                <svg class="icon-svg icon-svg-fill" viewBox="0 0 24 24"><path d="M12 20.5 4.7 13.6a4.8 4.8 0 0 1 6.8-6.8L12 7.3l.5-.5a4.8 4.8 0 0 1 6.8 6.8L12 20.5Z"></path></svg>
+            </div>
             <h3>Customer First</h3>
             <p>Our customers are at the heart of everything we do. Their satisfaction is our success.</p>
         </div>
         <div class="value-card">
-            <div class="value-icon">💡</div>
+            <div class="value-icon" aria-hidden="true">
+                <svg class="icon-svg" viewBox="0 0 24 24"><path d="M9 18h6"></path><path d="M10 22h4"></path><path d="M12 2a7 7 0 0 0-4 12.7c1 .7 1.6 1.8 1.8 3h4.4c.2-1.2.9-2.3 1.8-3A7 7 0 0 0 12 2Z"></path></svg>
+            </div>
             <h3>Innovation</h3>
             <p>We continuously innovate to make service booking simpler, faster, and more convenient for everyone.</p>
         </div>
     </div>
 </section>
 
-<!-- Our Team Section -->
+<!-- Our Team Section - Leadership -->
 <section class="team-section">
+    <div class="team-section-bg"></div>
+    
     <div class="section-header">
         <h2>Meet Our Leadership</h2>
-        <p>The passionate people behind ServiceHub</p>
+        <p>The visionary leaders driving ServiceHub's mission</p>
     </div>
 
     <div class="team-grid">
         <div class="team-card">
-            <div class="team-image">
-                <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Rajesh Mehta">
-            </div>
-            <h3>Rajesh Mehta</h3>
-            <p class="team-position">Founder & CEO</p>
-            <p class="team-bio">Former tech executive with 15+ years of experience in building customer-first platforms.</p>
-            <div class="team-social">
-                <a href="#" class="team-social-link">in</a>
-                <a href="#" class="team-social-link">tw</a>
-                <a href="#" class="team-social-link">li</a>
+            <div class="team-card-wrapper">
+                <div class="team-image">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Rajesh Mehta"
+                         onerror="this.src='https://via.placeholder.com/1000x1200?text=Rajesh+Mehta'">
+                    <div class="team-image-overlay"></div>
+                    <div class="team-expertise-badge">Visionary Leader</div>
+                </div>
+                
+                <div class="team-info">
+                    <h3 class="team-name">Rajesh Mehta</h3>
+                    <p class="team-position">Founder & CEO</p>
+                    
+                    <div class="team-expertise-tags">
+                        <span class="expertise-tag">Strategy</span>
+                        <span class="expertise-tag">Technology</span>
+                        <span class="expertise-tag">Innovation</span>
+                    </div>
+                    
+                    <p class="team-bio">Former tech executive with 15+ years of experience building customer-first platforms. Passionate about transforming India's service sector.</p>
+                    
+                    <div class="team-social">
+                        <a href="#" class="team-social-link" title="LinkedIn">
+                            <svg class="icon-svg" viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                        </a>
+                        <a href="#" class="team-social-link" title="Twitter">
+                            <svg class="icon-svg" viewBox="0 0 24 24"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2s9 5 20 5a9.5 9.5 0 0 0-9-5.5c4.75 2.25 7-7 7-7"></path></svg>
+                        </a>
+                        <a href="#" class="team-social-link" title="Email">
+                            <svg class="icon-svg" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg>
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="team-card">
-            <div class="team-image">
-                <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Priya Sharma">
-            </div>
-            <h3>Priya Sharma</h3>
-            <p class="team-position">Chief Operating Officer</p>
-            <p class="team-bio">Operations expert ensuring seamless service delivery across all categories.</p>
-            <div class="team-social">
-                <a href="#" class="team-social-link">in</a>
-                <a href="#" class="team-social-link">tw</a>
-                <a href="#" class="team-social-link">li</a>
+
+        <div class="team-card featured">
+            <div class="team-card-wrapper">
+                <div class="team-image">
+                    <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Priya Sharma"
+                         onerror="this.src='https://via.placeholder.com/1000x1200?text=Priya+Sharma'">
+                    <div class="team-image-overlay"></div>
+                    <div class="team-expertise-badge">Operations Expert</div>
+                </div>
+                
+                <div class="team-info">
+                    <h3 class="team-name">Priya Sharma</h3>
+                    <p class="team-position">Chief Operating Officer</p>
+                    
+                    <div class="team-expertise-tags">
+                        <span class="expertise-tag">Operations</span>
+                        <span class="expertise-tag">Excellence</span>
+                        <span class="expertise-tag">Growth</span>
+                    </div>
+                    
+                    <p class="team-bio">Operations strategist ensuring seamless service delivery across all categories. 12+ years of experience optimizing complex supply chains.</p>
+                    
+                    <div class="team-social">
+                        <a href="#" class="team-social-link" title="LinkedIn">
+                            <svg class="icon-svg" viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                        </a>
+                        <a href="#" class="team-social-link" title="Twitter">
+                            <svg class="icon-svg" viewBox="0 0 24 24"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2s9 5 20 5a9.5 9.5 0 0 0-9-5.5c4.75 2.25 7-7 7-7"></path></svg>
+                        </a>
+                        <a href="#" class="team-social-link" title="Email">
+                            <svg class="icon-svg" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg>
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
+
         <div class="team-card">
-            <div class="team-image">
-                <img src="https://randomuser.me/api/portraits/men/67.jpg" alt="Amit Patel">
-            </div>
-            <h3>Amit Patel</h3>
-            <p class="team-position">Chief Technology Officer</p>
-            <p class="team-bio">Tech visionary leading our platform innovation and user experience.</p>
-            <div class="team-social">
-                <a href="#" class="team-social-link">in</a>
-                <a href="#" class="team-social-link">tw</a>
-                <a href="#" class="team-social-link">li</a>
+            <div class="team-card-wrapper">
+                <div class="team-image">
+                    <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Amit Patel"
+                         onerror="this.src='https://via.placeholder.com/1000x1200?text=Amit+Patel'">
+                    <div class="team-image-overlay"></div>
+                    <div class="team-expertise-badge">Tech Pioneer</div>
+                </div>
+                
+                <div class="team-info">
+                    <h3 class="team-name">Amit Patel</h3>
+                    <p class="team-position">Chief Technology Officer</p>
+                    
+                    <div class="team-expertise-tags">
+                        <span class="expertise-tag">Architecture</span>
+                        <span class="expertise-tag">AI/ML</span>
+                        <span class="expertise-tag">UX</span>
+                    </div>
+                    
+                    <p class="team-bio">Tech visionary leading platform innovation and cutting-edge user experience. 13+ years in building scalable distributed systems.</p>
+                    
+                    <div class="team-social">
+                        <a href="#" class="team-social-link" title="LinkedIn">
+                            <svg class="icon-svg" viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                        </a>
+                        <a href="#" class="team-social-link" title="Twitter">
+                            <svg class="icon-svg" viewBox="0 0 24 24"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2s9 5 20 5a9.5 9.5 0 0 0-9-5.5c4.75 2.25 7-7 7-7"></path></svg>
+                        </a>
+                        <a href="#" class="team-social-link" title="Email">
+                            <svg class="icon-svg" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg>
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -154,22 +238,30 @@
 
     <div class="achievements-grid">
         <div class="achievement-card">
-            <div class="achievement-icon">🏆</div>
+            <div class="achievement-icon" aria-hidden="true">
+                <svg class="icon-svg" viewBox="0 0 24 24"><path d="M8 21h8"></path><path d="M12 17v4"></path><path d="M7 4h10v4a5 5 0 0 1-10 0V4Z"></path><path d="M17 6h2a2 2 0 0 1 0 4h-2"></path><path d="M7 6H5a2 2 0 0 0 0 4h2"></path></svg>
+            </div>
             <h3>Best Startup 2023</h3>
             <p>Recognized by Indian Startup Awards for innovation in service sector</p>
         </div>
         <div class="achievement-card">
-            <div class="achievement-icon">⭐</div>
+            <div class="achievement-icon" aria-hidden="true">
+                <svg class="icon-svg icon-svg-fill" viewBox="0 0 24 24"><path d="m12 2.8 2.8 5.7 6.3.9-4.6 4.5 1.1 6.3L12 17.3 6.4 20.2l1.1-6.3-4.6-4.5 6.3-.9L12 2.8Z"></path></svg>
+            </div>
             <h3>4.8/5 Rating</h3>
             <p>Average customer rating across 50,000+ reviews</p>
         </div>
         <div class="achievement-card">
-            <div class="achievement-icon">🌍</div>
+            <div class="achievement-icon" aria-hidden="true">
+                <svg class="icon-svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"></circle><path d="M3 12h18"></path><path d="M12 3a15 15 0 0 1 0 18"></path><path d="M12 3a15 15 0 0 0 0 18"></path></svg>
+            </div>
             <h3>Pan-India Presence</h3>
             <p>Operating in 25+ cities across India</p>
         </div>
         <div class="achievement-card">
-            <div class="achievement-icon">🤝</div>
+            <div class="achievement-icon" aria-hidden="true">
+                <svg class="icon-svg" viewBox="0 0 24 24"><path d="M8.5 11.5 6 14a2.8 2.8 0 0 1-4 0 2.8 2.8 0 0 1 0-4l4.7-4.7a3 3 0 0 1 4.2 0L13 7.4"></path><path d="m10.5 12.5 2.3 2.2a2.8 2.8 0 0 0 4 0l5.1-5.1a2.8 2.8 0 0 0 0-4 2.8 2.8 0 0 0-4 0L15 8.5"></path><path d="m9 15 6-6"></path></svg>
+            </div>
             <h3>10,000+ Jobs</h3>
             <p>Created livelihood opportunities for professionals</p>
         </div>

@@ -127,20 +127,26 @@ include 'header.php';
     
     <!-- Success/Error Messages using existing styles -->
     <?php if ($success_message): ?>
-        <div class="success-message" style="margin-bottom: 25px;">
-            ✅ <?php echo $success_message; ?>
+        <div class="success-message icon-inline" style="margin-bottom: 25px; align-items: center;">
+            <svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 4 4L19 6"></path></svg>
+            <span><?php echo $success_message; ?></span>
         </div>
     <?php endif; ?>
     
     <?php if ($error_message): ?>
-        <div class="error-message" style="margin-bottom: 25px;">
-            ❌ <?php echo $error_message; ?>
+        <div class="error-message icon-inline" style="margin-bottom: 25px; align-items: center;">
+            <svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="m9 9 6 6"></path><path d="m15 9-6 6"></path></svg>
+            <span><?php echo $error_message; ?></span>
         </div>
     <?php endif; ?>
     
     <?php if (!empty($errors)): ?>
         <div class="error-message" style="margin-bottom: 25px;">
-            ⚠️ <?php foreach ($errors as $error): ?>
+            <div class="icon-inline" style="margin-bottom: 6px;">
+                <svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 2.8 19a1.2 1.2 0 0 0 1 1.8h16.4a1.2 1.2 0 0 0 1-1.8L12 3Z"></path><path d="M12 9v4"></path><path d="M12 17h.01"></path></svg>
+                <span>Please review the following:</span>
+            </div>
+            <?php foreach ($errors as $error): ?>
                 <?php echo $error; ?><br>
             <?php endforeach; ?>
         </div>
@@ -237,8 +243,9 @@ include 'header.php';
     </div>
     
     <!-- Simple info note -->
-    <p style="text-align: center; color: var(--text-light); font-size: 14px; margin-top: 20px;">
-        ℹ️ Fields marked with <span style="color: var(--secondary-color);">*</span> are required
+    <p class="icon-inline" style="justify-content: center; color: var(--text-light); font-size: 14px; margin-top: 20px;">
+        <svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 11v5"></path><path d="M12 8h.01"></path></svg>
+        <span>Fields marked with <span style="color: var(--secondary-color);">*</span> are required</span>
     </p>
 </div>
 

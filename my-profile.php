@@ -54,7 +54,9 @@ include 'header.php';
     <div class="profile-hero-container">
         <!-- Circular Avatar with shadow - can be dynamic later -->
         <div class="profile-avatar">
-            <span>👤</span>
+            <span aria-hidden="true">
+                <svg class="icon-svg" viewBox="0 0 24 24"><path d="M18 20a6 6 0 0 0-12 0"></path><circle cx="12" cy="8" r="4"></circle></svg>
+            </span>
         </div>
         <h1 class="profile-title">My Profile</h1>
         <p class="profile-subtitle">Manage your personal information</p>
@@ -135,14 +137,16 @@ include 'header.php';
 
     <!-- Subtle notification if any fields are missing -->
     <?php if (!empty($missing_fields)): ?>
-        <p class="text-center" style="color: var(--text-light); font-size: 14px; margin-top: 15px;">
-            ℹ️ Some information is missing. Click <strong>Edit Profile</strong> to complete your profile.
+        <p class="icon-inline text-center" style="justify-content: center; color: var(--text-light); font-size: 14px; margin-top: 15px; align-items: center;">
+            <svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 11v5"></path><path d="M12 8h.01"></path></svg>
+            <span>Some information is missing. Click <strong>Edit Profile</strong> to complete your profile.</span>
         </p>
     <?php endif; ?>
 
     <!-- Danger Zone Note -->
-    <p style="text-align: center; color: var(--text-light); font-size: 13px; margin-top: 30px; border-top: 1px dashed var(--border-light); padding-top: 20px;">
-        ⚠️ Account deletion is permanent and cannot be undone.
+    <p class="icon-inline" style="justify-content: center; color: var(--text-light); font-size: 13px; margin-top: 30px; border-top: 1px dashed var(--border-light); padding-top: 20px; align-items: center;">
+        <svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 2.8 19a1.2 1.2 0 0 0 1 1.8h16.4a1.2 1.2 0 0 0 1-1.8L12 3Z"></path><path d="M12 9v4"></path><path d="M12 17h.01"></path></svg>
+        <span>Account deletion is permanent and cannot be undone.</span>
     </p>
 </div>
 
@@ -150,7 +154,9 @@ include 'header.php';
 <div id="deleteConfirmModal" class="modal">
     <div class="modal-content">
         <div class="modal-header">
-            <span class="modal-icon">⚠️</span>
+            <span class="modal-icon" aria-hidden="true">
+                <svg class="icon-svg" viewBox="0 0 24 24"><path d="M12 3 2.8 19a1.2 1.2 0 0 0 1 1.8h16.4a1.2 1.2 0 0 0 1-1.8L12 3Z"></path><path d="M12 9v4"></path><path d="M12 17h.01"></path></svg>
+            </span>
             <h3>Delete Account</h3>
         </div>
         <div class="modal-body">

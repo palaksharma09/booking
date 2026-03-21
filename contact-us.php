@@ -20,7 +20,9 @@
             <div class="contact-cards-grid">
                 <!-- Address Card -->
                 <div class="contact-card">
-                    <div class="contact-card-icon">📍</div>
+                    <div class="contact-card-icon" aria-hidden="true">
+                        <svg class="icon-svg" viewBox="0 0 24 24"><path d="M12 21s7-5.8 7-11a7 7 0 1 0-14 0c0 5.2 7 11 7 11Z"></path><circle cx="12" cy="10" r="2.5"></circle></svg>
+                    </div>
                     <div class="contact-card-content">
                         <h3>Address</h3>
                         <p>ServiceHub Office<br>Ahmedabad, Gujarat, India</p>
@@ -29,7 +31,9 @@
                 
                 <!-- Phone Card -->
                 <div class="contact-card">
-                    <div class="contact-card-icon">📞</div>
+                    <div class="contact-card-icon" aria-hidden="true">
+                        <svg class="icon-svg" viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.4 19.4 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4 2h3a2 2 0 0 1 2 1.7l.5 3a2 2 0 0 1-.6 1.8l-1.3 1.3a16 16 0 0 0 6.4 6.4l1.3-1.3a2 2 0 0 1 1.8-.6l3 .5A2 2 0 0 1 22 16.9Z"></path></svg>
+                    </div>
                     <div class="contact-card-content">
                         <h3>Phone</h3>
                         <p>+91 98765 43210</p>
@@ -38,7 +42,9 @@
                 
                 <!-- Email Card -->
                 <div class="contact-card">
-                    <div class="contact-card-icon">✉️</div>
+                    <div class="contact-card-icon" aria-hidden="true">
+                        <svg class="icon-svg" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="m4 7 8 6 8-6"></path></svg>
+                    </div>
                     <div class="contact-card-content">
                         <h3>Email</h3>
                         <p>support@servicehub.com</p>
@@ -47,7 +53,9 @@
                 
                 <!-- Working Hours Card -->
                 <div class="contact-card">
-                    <div class="contact-card-icon">🕒</div>
+                    <div class="contact-card-icon" aria-hidden="true">
+                        <svg class="icon-svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg>
+                    </div>
                     <div class="contact-card-content">
                         <h3>Working Hours</h3>
                         <p>Monday – Saturday<br>9:00 AM – 7:00 PM</p>
@@ -57,7 +65,10 @@
             
             <!-- Map/Additional Info -->
             <div class="contact-info-footer">
-                <p>📱 Follow us on social media for updates and offers</p>
+                <p class="icon-inline">
+                    <svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="2.5" width="10" height="19" rx="2"></rect><path d="M11 18.5h2"></path></svg>
+                    <span>Follow us on social media for updates and offers</span>
+                </p>
                 <div class="contact-social-links">
                     <a href="#" class="contact-social-link">f</a>
                     <a href="#" class="contact-social-link">t</a>
