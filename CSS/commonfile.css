@@ -164,18 +164,23 @@ body {
   align-items: center;
   gap: 48px;
 }
-
 .brand-logo {
-  color: var(--secondary-color);
-  font-size: 28px;
-  font-weight: 800;
-  letter-spacing: -0.5px;
+  display: flex;
+  align-items: center;
   text-decoration: none;
   transition: var(--transition-fast);
 }
 
-.brand-logo:hover {
-  color: var(--secondary-light);
+.logo-image {
+  height: 40px; /* Adjust this value based on your logo size */
+  width: auto;
+  display: block;
+  transition: var(--transition-fast);
+}
+
+.brand-logo:hover .logo-image {
+  transform: scale(1.05);
+  opacity: 0.9;
 }
 
 .nav-links {

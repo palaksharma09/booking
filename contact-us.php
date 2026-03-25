@@ -25,7 +25,7 @@
                     </div>
                     <div class="contact-card-content">
                         <h3>Address</h3>
-                        <p>ServiceHub Office<br>Ahmedabad, Gujarat, India</p>
+                        <p>Fixora Office<br>Ahmedabad, Gujarat, India</p>
                     </div>
                 </div>
                 
@@ -47,7 +47,7 @@
                     </div>
                     <div class="contact-card-content">
                         <h3>Email</h3>
-                        <p>support@servicehub.com</p>
+                        <p>support@Fixora.com</p>
                     </div>
                 </div>
                 

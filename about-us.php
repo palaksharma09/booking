@@ -4,7 +4,7 @@
 <section class="about-hero">
     <div class="about-hero-container">
         <div class="about-hero-content">
-            <h1>About <span class="highlight">ServiceHub</span></h1>
+            <h1>About <span class="highlight">Fixora</span></h1>
             <p class="about-hero-description">India's most trusted platform connecting customers with verified professionals for home, salon, and garage services.</p>
         </div>
     </div>
@@ -15,7 +15,7 @@
     <div class="our-story-container">
         <div class="our-story-image">
             <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" 
-                 alt="Our Team at ServiceHub"
+                 alt="Our Team at Fixora"
                  onerror="this.src='https://via.placeholder.com/600x400?text=Our+Team'">
             <div class="story-image-badge">
                 <span class="badge-icon" aria-hidden="true">
@@ -27,10 +27,10 @@
         <div class="our-story-content">
             <div class="section-header-left">
                 <span class="section-subtitle">Our Story</span>
-                <h2>How ServiceHub Began</h2>
+                <h2>How Fixora Began</h2>
             </div>
-            <p class="story-text">ServiceHub was founded in 2020 with a simple mission: to make professional services accessible, reliable, and hassle-free for every Indian household. What started as a small initiative in Mumbai has now grown into a trusted platform serving thousands of customers across the country.</p>
-            <p class="story-text">We realized that finding trustworthy professionals for home maintenance, beauty services, and car care was a challenge. That's why we built ServiceHub - to bridge the gap between skilled professionals and customers who need them, ensuring quality, transparency, and peace of mind.</p>
+            <p class="story-text">Fixora was founded in 2020 with a simple mission: to make professional services accessible, reliable, and hassle-free for every Indian household. What started as a small initiative in Mumbai has now grown into a trusted platform serving thousands of customers across the country.</p>
+            <p class="story-text">We realized that finding trustworthy professionals for home maintenance, beauty services, and car care was a challenge. That's why we built Fixora - to bridge the gap between skilled professionals and customers who need them, ensuring quality, transparency, and peace of mind.</p>
             
             <div class="story-stats">
                 <div class="story-stat-item">
@@ -115,7 +115,7 @@
     
     <div class="section-header">
         <h2>Meet Our Leadership</h2>
-        <p>The visionary leaders driving ServiceHub's mission</p>
+        <p>The visionary leaders driving Fixora's mission</p>
     </div>
 
     <div class="team-grid">
@@ -315,7 +315,7 @@
 <!-- Call to Action -->
 <section class="about-cta">
     <div class="cta-content">
-        <h2>Ready to experience the ServiceHub difference?</h2>
+        <h2>Ready to experience the Fixora difference?</h2>
         <p>Join thousands of happy customers who trust us for their service needs</p>
         <div class="cta-buttons">
             <a href="services.php" class="btn-primary btn-large">Explore Services</a>

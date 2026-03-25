@@ -139,7 +139,7 @@
 
 <section class="features-section">
     <div class="section-header">
-        <h2>Why Choose ServiceHub?</h2>
+        <h2>Why Choose Fixora?</h2>
         <p>We connect you with the best professionals in your area</p>
     </div>
 

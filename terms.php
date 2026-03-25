@@ -2,7 +2,7 @@
 <section class="booking-main-section">
     <div class="booking-form-card" style="max-width: 900px; margin: 0 auto;">
         <h1 class="booking-form-title">Terms of Service</h1>
-        <p class="booking-form-subtitle">These terms explain how bookings, payments, cancellations, and platform usage work on ServiceHub.</p>
+        <p class="booking-form-subtitle">These terms explain how bookings, payments, cancellations, and platform usage work on Fixora.</p>
         <div class="info-grid">
             <div class="info-row"><span class="info-label">Bookings</span><span class="info-value">All bookings are subject to professional availability and confirmation.</span></div>
             <div class="info-row"><span class="info-label">Payments</span><span class="info-value">Pricing shown at checkout is estimated and may vary if the service scope changes on site.</span></div>

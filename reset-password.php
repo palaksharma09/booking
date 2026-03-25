@@ -53,14 +53,14 @@ $conn->close();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reset Password | ServiceHub</title>
+    <title>Reset Password | Fixora</title>
     <link rel="stylesheet" href="CSS/commonfile.css">
 </head>
 <body class="auth-body">
     <div class="auth-container">
         <div class="auth-card">
             <div class="auth-header">
-                <a href="dashboard.php" class="auth-logo">ServiceHub</a>
+                <a href="dashboard.php" class="auth-logo">Fixora</a>
                 <h2>Reset Password</h2>
                 <p>Create a new password for your account</p>
             </div>

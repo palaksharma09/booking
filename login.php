@@ -73,7 +73,7 @@ $conn->close();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login | ServiceHub</title>
+    <title>Login | Fixora</title>
     <link rel="stylesheet" href="CSS/commonfile.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -142,7 +142,7 @@ $conn->close();
     <div class="auth-container">
         <div class="auth-card">
             <div class="auth-header">
-                <a href="dashboard.php" class="auth-logo">ServiceHub</a>
+                <a href="dashboard.php" class="auth-logo">Fixora</a>
                 <h2>Welcome Back</h2>
                 <p>Sign in to continue to your account</p>
             </div>

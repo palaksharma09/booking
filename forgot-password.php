@@ -48,14 +48,14 @@ $conn->close();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Forgot Password | ServiceHub</title>
+    <title>Forgot Password | Fixora</title>
     <link rel="stylesheet" href="CSS/commonfile.css">
 </head>
 <body class="auth-body">
     <div class="auth-container">
         <div class="auth-card">
             <div class="auth-header">
-                <a href="dashboard.php" class="auth-logo">ServiceHub</a>
+                <a href="dashboard.php" class="auth-logo">Fixora</a>
                 <h2>Forgot Password?</h2>
                 <p>Enter your email to receive a verification code</p>
             </div>
@@ -92,7 +92,7 @@ $conn->close();
                 <span>Need help?</span>
             </div>
             <div style="text-align: center; font-size: 14px;">
-                <p>Contact support at <strong>support@servicehub.com</strong></p>
+                <p>Contact support at <strong>support@Fixora.com</strong></p>
             </div>
         </div>
     </div>

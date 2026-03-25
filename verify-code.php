@@ -44,14 +44,14 @@ if (isset($_GET['resend']) && $_GET['resend'] == 'true') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Verify Code | ServiceHub</title>
+    <title>Verify Code | Fixora</title>
     <link rel="stylesheet" href="CSS/commonfile.css">
 </head>
 <body class="auth-body">
     <div class="auth-container">
         <div class="auth-card">
             <div class="auth-header">
-                <a href="dashboard.php" class="auth-logo">ServiceHub</a>
+                <a href="dashboard.php" class="auth-logo">Fixora</a>
                 <h2>Verify Code</h2>
                 <p>Enter the 6-digit code sent to <strong><?php echo htmlspecialchars($_SESSION['reset_email']); ?></strong></p>
             </div>

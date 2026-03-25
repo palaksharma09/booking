@@ -3,7 +3,7 @@
     <footer class="premium-footer">
         <div class="footer-container">
             <div class="footer-col">
-                <h3>ServiceHub</h3>
+                <h3>Fixora</h3>
                 <p>Your trusted platform connecting you with verified professionals for home, salon, and garage services. Quality service, guaranteed.</p>
                 <div class="social-icons">
                     <a href="#" aria-label="Website"><i class="fa-solid fa-globe"></i></a>
@@ -47,14 +47,14 @@
                 <h4>Contact</h4>
                 <ul>
                     <li><i class="fa-solid fa-phone"></i> +91 12345 67890</li>
-                    <li><i class="fa-solid fa-envelope"></i> support@servicehub.com</li>
+                    <li><i class="fa-solid fa-envelope"></i> support@Fixora.com</li>
                     <li><i class="fa-solid fa-location-dot"></i> Mumbai, India</li>
                 </ul>
             </div>
         </div>
 
         <div class="footer-bottom">
-            <p>&copy; 2026 ServiceHub. All rights reserved. Made with care in India.</p>
+            <p>&copy; 2026 Fixora. All rights reserved. Made with care in India.</p>
         </div>
     </footer>
 
