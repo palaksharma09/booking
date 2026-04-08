@@ -2,7 +2,13 @@
 session_start();
 
 if (isset($_SESSION['user_id'])) {
-    header("Location: dashboard.php");
+
+    if ($_SESSION['user_role'] === 'admin') {
+        header("Location: admin/dashboard.php");
+    } else {
+        header("Location: dashboard.php");
+    }
+
     exit();
 }
 
@@ -41,6 +47,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $user = $result->fetch_assoc();
 
             if ($password === $user['password']) {
+
                 $_SESSION['user_id'] = $user['user_id'];
                 $_SESSION['username'] = $user['user_name'];
                 $_SESSION['user_email'] = $user['user_email_id'];
@@ -52,7 +59,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     setcookie('remember_token', $token, time() + (86400 * 30), "/");
                 }
 
-                header("Location: dashboard.php");
+                // 🔥 ROLE-BASED REDIRECTION
+                if ($user['role'] === 'admin') {
+                    header("Location: admin/dashboard.php");
+                } else {
+                    header("Location: dashboard.php");
+                }
+
                 exit();
             } else {
                 $login_error = "Invalid password";
@@ -70,6 +83,7 @@ $conn->close();
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -138,6 +152,7 @@ $conn->close();
         }
     </style>
 </head>
+
 <body class="auth-body">
     <div class="auth-container">
         <div class="auth-card">
@@ -175,9 +190,9 @@ $conn->close();
                 <div class="form-group">
                     <label for="login_input">Username or Email</label>
                     <input type="text" id="login_input" name="login_input"
-                           placeholder="Enter your username or email"
-                           value="<?php echo isset($_POST['login_input']) ? htmlspecialchars($_POST['login_input']) : ''; ?>"
-                           required>
+                        placeholder="Enter your username or email"
+                        value="<?php echo isset($_POST['login_input']) ? htmlspecialchars($_POST['login_input']) : ''; ?>"
+                        required>
                 </div>
 
                 <div class="form-group">
@@ -209,20 +224,21 @@ $conn->close();
     </div>
 
     <script>
-    function togglePasswordVisibility(fieldId, trigger) {
-        const passwordInput = document.getElementById(fieldId);
-        const toggleIcon = trigger.querySelector('i');
+        function togglePasswordVisibility(fieldId, trigger) {
+            const passwordInput = document.getElementById(fieldId);
+            const toggleIcon = trigger.querySelector('i');
 
-        if (passwordInput.type === 'password') {
-            passwordInput.type = 'text';
-            toggleIcon.className = 'fa-regular fa-eye-slash';
-            trigger.setAttribute('aria-label', 'Hide password');
-        } else {
-            passwordInput.type = 'password';
-            toggleIcon.className = 'fa-regular fa-eye';
-            trigger.setAttribute('aria-label', 'Show password');
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                toggleIcon.className = 'fa-regular fa-eye-slash';
+                trigger.setAttribute('aria-label', 'Hide password');
+            } else {
+                passwordInput.type = 'password';
+                toggleIcon.className = 'fa-regular fa-eye';
+                trigger.setAttribute('aria-label', 'Show password');
+            }
         }
-    }
     </script>
 </body>
+
 </html>
